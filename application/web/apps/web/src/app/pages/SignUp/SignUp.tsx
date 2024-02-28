@@ -1,18 +1,12 @@
 import React from 'react'
 import { Box, Button, Container, FormControl, Grid, Input, Stack, TextField, Typography, useTheme } from '@mui/material'
 import { useForm } from 'react-hook-form'
-
+import { ISignUp } from '@web/shared' 
 
 const SignUp = () => {
 
     const theme = useTheme()
-
-    interface IFormData {
-        UserName: string
-        Password: number
-        ConfirmPassword: number
-    }
-
+    
     
 
     return (
