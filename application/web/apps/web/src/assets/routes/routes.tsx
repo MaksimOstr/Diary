@@ -1,13 +1,22 @@
+
+import { SignIn } from "@web/SignIn";
+import { SignUp } from "@web/SignUp";
 import { Link, createBrowserRouter } from "react-router-dom";
-import SignUp from "../../app/pages/SignUp/SignUp";
+import Navigator from "./Navigator";
+
+
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Link to='SignUp'>to SingUp</Link>
+    element: <Navigator/>
   },
   {
     path: '/SignUp',
     element: <SignUp/>
+  },
+  {
+    path: '/SignIn',
+    element: <SignIn/>
   }
 ])
