@@ -1,5 +1,10 @@
 export interface ISignUp {
-    Username: string
-    Password: number
-    ConfirmPassword: number
+    username?: string
+    password: string
+    confirmPassword: string
+}
+
+export interface ISignIn {
+    username?: string
+    password: string
 }

@@ -1,25 +1,30 @@
 import React from 'react'
-import { Box, Button, Container, FormControl, Grid, Input, Stack, TextField, Typography, useTheme } from '@mui/material'
-import { useForm } from 'react-hook-form'
+import { Box, Button, Grid, TextField, Typography, useTheme } from '@mui/material'
+import { Controller, SubmitHandler, useForm, useFormState } from 'react-hook-form'
 import { ISignUp } from '@web/shared'
-import { error } from 'console'
+import { formSchema } from '../features-SignUp/schema/signUpSchema'
+import { yupResolver } from '@hookform/resolvers/yup';
+import { formBodyProps, submitButtonProps } from '../features-SignUp/styles/styles'
 
-export const SignUp:React.FC<any> = () => {
+
+
+export const SignUp: React.FC<any> = () => {
 
     const theme = useTheme()
-    const {
-        register,
-        formState: {
-            errors
-        },
-        handleSubmit,
-        reset,
-        watch
-    } = useForm<ISignUp>({
-        mode: 'onBlur',
+    const { control, handleSubmit, reset } = useForm<ISignUp>({
+        mode: 'onChange',
+        resolver: yupResolver(formSchema),
+        defaultValues: {
+            username: '',
+            password: '',
+            confirmPassword: ''
+        }
+    })
+    const { errors } = useFormState({
+        control
     })
 
-    const onSubmit = (data: ISignUp) => {
+    const onSubmit: SubmitHandler<ISignUp> = (data) => {
         console.log(data)
         reset()
     }
@@ -34,7 +39,7 @@ export const SignUp:React.FC<any> = () => {
             alignItems='center'
         >
             <Box
-                sx={{ backgroundColor: 'white' }}
+                sx={ formBodyProps }
                 borderRadius='15px'
                 maxWidth='90%'
                 padding='2% 2%'
@@ -44,7 +49,6 @@ export const SignUp:React.FC<any> = () => {
                 flexDirection='column'
             >
                 <Typography marginBottom='10%' variant='h2'>SignUp</Typography>
-
                 <Box
                     width='100%'
                     component='form'
@@ -54,65 +58,62 @@ export const SignUp:React.FC<any> = () => {
                     alignItems='center'
                     onSubmit={handleSubmit(onSubmit)}
                 >
-                    <Grid container width='70%' spacing={2} display='flex' alignItems='center' justifyContent='center'>
+                    <Grid container width='100%' spacing={2} display='flex' alignItems='center' justifyContent='center'>
                         <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                label={errors?.Username ? errors.Username.message : 'Username'}
-                                color='secondary'
-                                {...register('Username', {
-                                    required: 'This field is required!',
-                                    minLength: {
-                                        value: 4,
-                                        message: 'Minimum 4 characters'
-                                    },
-                                    pattern: {
-                                        value: /[A-Za-z]/,
-                                        message: 'Please enter a valid email',
-                                    },
-                                })}
-                                error={errors.Username ? true : false}
+                            <Controller
+                                control={control}
+                                name='username'
+                                render={({ field }) => (
+                                    <TextField
+                                        fullWidth
+                                        color='secondary'
+                                        label='Username'
+                                        onChange={(e) => field.onChange(e)}
+                                        value={field.value}
+                                        error={!!errors.username}
+                                        helperText={errors.username?.message}
+                                    />
+                                )}
                             />
                         </Grid>
                         <Grid item xs={6}>
-                            <TextField
-                                fullWidth
-                                type='password'
-                                label={errors?.Password ? errors.Password.message : 'Password'}
-                                color='secondary'
-                                {...register('Password', {
-                                    required: 'This field is required!',
-                                    minLength: {
-                                        value: 6,
-                                        message: 'Minimum 6 characters'
-                                    }
-                                })}
-                                error={errors.Password ? true : false}
+                            <Controller
+                                control={control}
+                                name='password'
+                                render={({ field }) => (
+                                    <TextField
+                                        fullWidth
+                                        color='secondary'
+                                        label='Password'
+                                        type='password'
+                                        error={!!errors.password}
+                                        onChange={(e) => field.onChange(e)}
+                                        value={field.value}
+                                        helperText={errors.password?.message}
+                                    />
+                                )}
                             />
                         </Grid>
                         <Grid item xs={6}  >
-                            <TextField
-                                fullWidth
-                                type='password'
-                                label={errors?.ConfirmPassword ? errors.ConfirmPassword.message : 'Confirm password'}
-                                color='secondary'
-                                {...register('ConfirmPassword', {
-                                    required: 'This field is required!',
-                                    minLength: {
-                                        value: 6,
-                                        message: 'Minimum 6 characters'
-                                    },
-                                    validate: value => {
-                                        if (watch('Password') !== value) {
-                                            return "Your passwords do no match";
-                                        }
-                                    }
-                                })}
-                                error={errors.ConfirmPassword ? true : false}
+                            <Controller
+                                control={control}
+                                name='confirmPassword'
+                                render={({ field }) => (
+                                    <TextField
+                                        fullWidth
+                                        type='password'
+                                        label='Confirm password'
+                                        color='secondary'
+                                        error={!!errors.confirmPassword}
+                                        onChange={(e) => field.onChange(e)}
+                                        value={field.value}
+                                        helperText={errors.confirmPassword?.message}
+                                    />
+                                )}
                             />
                         </Grid>
                     </Grid>
-                    <Button type='submit' color="secondary" variant="outlined" sx={{ marginTop: '20px', width: '30%', fontSize: '18px' }}>SignUp</Button>
+                    <Button type='submit' color="secondary" variant="outlined" sx={ submitButtonProps }>Sign Up</Button>
                 </Box>
             </Box>
         </Box >
