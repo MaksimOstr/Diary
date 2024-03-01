@@ -1,7 +1,9 @@
-import { SignUp } from "@web/SignUp";
-import { Link, createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Navigator from "./Navigator";
+import { SignUp } from "@web/SignUp";
 import { SignIn } from "@web/SignIn";
+
+
 
 
 

@@ -4,12 +4,12 @@ import { Controller, SubmitHandler, useForm, useFormState } from 'react-hook-for
 import { yupResolver } from '@hookform/resolvers/yup';
 import { formBodyProps, submitButtonProps } from '../features-SignIn/styles/styles';
 import { ISignIn } from '@web/shared'
-import { formSchema } from '../features-SignIn/validation/signInSchema';
+import { formSchema } from '../features-SignIn/schema/signInSchema';
 
 export const SignIn: React.FC<any> = () => {
 
   const theme = useTheme()
-  const { control, handleSubmit, reset } = useForm<ISignIn>({
+  const { control, handleSubmit, reset, formState: { errors } } = useForm<ISignIn>({
     mode: 'onChange',
     resolver: yupResolver(formSchema),
     defaultValues: {
@@ -17,9 +17,7 @@ export const SignIn: React.FC<any> = () => {
       password: '',
     }
   })
-  const { errors } = useFormState({
-    control
-  })
+
   const onSubmit: SubmitHandler<ISignIn> = (data) => {
     console.log(data)
     reset()
@@ -60,6 +58,7 @@ export const SignIn: React.FC<any> = () => {
                 fullWidth
                 color='secondary'
                 label='Username'
+                
                 onChange={(e) => field.onChange(e)}
                 value={field.value}
                 error={!!errors.username}
@@ -89,5 +88,3 @@ export const SignIn: React.FC<any> = () => {
     </Box >
   )
 }
-
-export default SignIn

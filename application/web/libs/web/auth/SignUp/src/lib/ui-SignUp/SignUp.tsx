@@ -8,10 +8,12 @@ import { formBodyProps, submitButtonProps } from '../features-SignUp/styles/styl
 
 
 
+
 export const SignUp: React.FC<any> = () => {
 
     const theme = useTheme()
-    const { control, handleSubmit, reset } = useForm<ISignUp>({
+
+    const { control, handleSubmit, reset, formState: { errors } } = useForm<ISignUp>({
         mode: 'onChange',
         resolver: yupResolver(formSchema),
         defaultValues: {
@@ -19,9 +21,6 @@ export const SignUp: React.FC<any> = () => {
             password: '',
             confirmPassword: ''
         }
-    })
-    const { errors } = useFormState({
-        control
     })
 
     const onSubmit: SubmitHandler<ISignUp> = (data) => {
@@ -117,4 +116,3 @@ export const SignUp: React.FC<any> = () => {
     )
 }
 
-export default SignUp
