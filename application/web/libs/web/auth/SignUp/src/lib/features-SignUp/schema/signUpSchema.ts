@@ -2,6 +2,7 @@ import { object, string, ref } from "yup";
 
 export const formSchema = object().shape({
     username: string()
+        .required("Username is required")
         .matches(/^[a-zA-Z]+$/ , 'Is not in correct format')
         .min(3, "Username length should be at least 3 characters"),
     password: string()
