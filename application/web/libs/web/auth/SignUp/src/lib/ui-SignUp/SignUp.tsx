@@ -39,16 +39,13 @@ export const SignUp: React.FC<any> = () => {
             alignItems='center'
         >
             <Box
-                sx={ formBodyProps }
-                borderRadius='15px'
-                maxWidth='90%'
-                padding='2% 2%'
+                sx={formBodyProps}
                 display='flex'
                 justifyContent='center'
                 alignItems='center'
                 flexDirection='column'
             >
-                <Typography marginBottom='10%' variant='h2'>SignUp</Typography>
+                <Typography marginBottom='10%' variant='h2'>Sign Up</Typography>
                 <Box
                     width='100%'
                     component='form'
@@ -113,7 +110,7 @@ export const SignUp: React.FC<any> = () => {
                             />
                         </Grid>
                     </Grid>
-                    <Button type='submit' color="secondary" variant="outlined" sx={ submitButtonProps }>Sign Up</Button>
+                    <Button type='submit' color="secondary" variant="outlined" sx={submitButtonProps}>Sign Up</Button>
                 </Box>
             </Box>
         </Box >

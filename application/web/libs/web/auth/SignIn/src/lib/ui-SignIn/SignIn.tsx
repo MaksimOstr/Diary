@@ -36,14 +36,12 @@ export const SignIn: React.FC<any> = () => {
     >
       <Box
         sx={ formBodyProps }
-        borderRadius='15px'
-        padding='2% 2%'
         display='flex'
         justifyContent='center'
         alignItems='center'
         flexDirection='column'
       >
-        <Typography marginBottom='10%' variant='h2'>Sign In</Typography>
+        <Typography mb='10%' variant='h2'>Sign In</Typography>
         <Box
           width='100%'
           rowGap={3}
@@ -85,7 +83,7 @@ export const SignIn: React.FC<any> = () => {
               />
             )}
           />
-          <Button type='submit' color="secondary" variant="outlined" sx={ submitButtonProps }>Sign Up</Button>
+          <Button type='submit' color="secondary" variant="outlined" sx={ submitButtonProps }>Sign Ip</Button>
         </Box>
       </Box>
     </Box >
