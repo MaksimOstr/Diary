@@ -6,7 +6,7 @@ import { formBodyProps, submitButtonProps } from '../features-SignIn/styles/styl
 import { ISignIn } from '@web/shared'
 import { formSchema } from '../features-SignIn/schema/signInSchema';
 
-export const SignIn: React.FC<any> = () => {
+export const SignIn: React.FC<void> = () => {
 
   const theme = useTheme()
   const { control, handleSubmit, reset, formState: { errors } } = useForm<ISignIn>({

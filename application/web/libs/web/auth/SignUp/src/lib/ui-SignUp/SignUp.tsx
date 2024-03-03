@@ -9,7 +9,7 @@ import { formBodyProps, submitButtonProps } from '../features-SignUp/styles/styl
 
 
 
-export const SignUp: React.FC<any> = () => {
+export const SignUp: React.FC<void> = () => {
 
     const theme = useTheme()
 
