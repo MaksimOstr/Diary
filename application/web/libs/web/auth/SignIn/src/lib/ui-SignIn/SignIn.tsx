@@ -48,7 +48,7 @@ export const SignIn: React.FC<void> = () => {
           flexDirection='column'
           justifyContent='center'
           alignItems='center'
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={ handleSubmit(onSubmit) }
         >
           <Controller
             control={control}
